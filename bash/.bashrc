@@ -72,6 +72,12 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 export PS1="┌──\u@\h[\w]\n└─╼ "
+
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=0
+    source "$HOME/.bash-git-prompt/gitprompt.sh"
+fi
+
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir

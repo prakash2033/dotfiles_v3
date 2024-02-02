@@ -60,6 +60,9 @@
     
     sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
+    
+    # git prompt
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 
     wget https://dot.net/v1/dotnet-install.sh
     chmod +x dotnet-install.sh
