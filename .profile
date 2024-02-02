@@ -44,6 +44,7 @@ export GOPATH=~/.go
 export PATH="$PATH:$GOPATH/bin"
 export DOTNET_ROOT="$HOME/.dotnet"
 export DOTNET_CLI_TELEMETRY_OPTOUT="true"
+export LD_LIBRARY_PATH="/usr/local/lib"
 export LESS=$LESS" -S -R"
 export TERM="xterm-256color"
 export SPOOL="tsp"
