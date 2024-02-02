@@ -1,0 +1,13 @@
+#To ignore
+cache.db
+cache.db.lock
+.DS_Store
+history.search
+ranger/.config/ranger/plugins/*
+w3m/.w3m/cookie
+w3m/.w3m/history
+w3m/.w3m/*.gz
+mpv/.config/mpv/watch_later/
+newsboat/.newsboat/cache.db.lock
+newsboat/.newsboat/history.cmdline
+newsboat/.newsboat/cache.db.lock
