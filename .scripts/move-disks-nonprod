@@ -1,0 +1,32 @@
+#Provide the subscription Id of the subscription where managed disk exists
+sourceSubscriptionId="dba84d11-dcb4-46a8-b3db-5829e726248e"
+
+#Provide the name of your resource group where managed disk exists
+sourceResourceGroupName=TOCC_TOS_Dev
+
+#Provide the name of the managed disk
+managedDiskName=TOCCTOSPREPROD_OsDisk_1_3caf26721a0c403babe662368f0e7655
+
+# azure cli login
+az login
+
+#Set the context to the subscription Id where managed disk exists
+az account set --subscription $sourceSubscriptionId
+
+#Get the managed disk Id 
+managedDiskId=$(az disk show --name $managedDiskName --resource-group $sourceResourceGroupName --query [id] -o tsv)
+
+#If managedDiskId is blank then it means that managed disk does not exist.
+echo 'source managed disk Id is: ' $managedDiskId
+
+#Provide the subscription Id of the subscription where managed disk will be copied to
+targetSubscriptionId=43ffcbc8-549b-4870-94e0-1f61ac4ec649
+
+#Name of the resource group where managed disk will be copied to
+targetResourceGroupName=rg-weu-old-tos-nonprod
+
+#Set the context to the subscription Id where managed disk will be copied to
+az account set --subscription $targetSubscriptionId
+
+#Copy managed disk to different subscription using managed disk Id
+az disk create --resource-group $targetResourceGroupName --name $managedDiskName --source $managedDiskId

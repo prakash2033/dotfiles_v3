@@ -1,0 +1,179 @@
+#                          _                 _                _     
+#  _ __   _____      _____| |__   ___   __ _| |_   _   _ _ __| |___ 
+# | '_ \ / _ \ \ /\ / / __| '_ \ / _ \ / _` | __| | | | | '__| / __|
+# | | | |  __/\ V  V /\__ \ |_) | (_) | (_| | |_  | |_| | |  | \__ \
+# |_| |_|\___| \_/\_/ |___/_.__/ \___/ \__,_|\__|  \__,_|_|  |_|___/
+
+# -------- Starred Articles / Flagged Articles {{{
+# ------------------------------------------------------
+# https://newsboat.org/releases/2.10.1/docs/newsboat.html#_flagging_articles
+# https://github.com/akrennmair/newsbeuter/issues/464#issuecomment-272574679
+# Usage: go to an article, press Ctrl+e, press s, press enter; it will now show up in your 'Starred Articles' query feed
+# To Cancle: press Escape
+"query:Starred Articles:flags # \"s\""
+
+# }}}
+# -------- Query Feeds {{{
+# ------------------------------------------------------
+# http://www.offensivethinking.org/blog/2009/05/12/efficient-rss-reading.html
+# https://github.com/gpakosz/.newsbeuter/blob/master/urls
+# http://www.newsbeuter.org/doc/newsbeuter.html#_query_feeds
+# hidden query feeds: https://github.com/newsboat/newsboat/issues/33
+# query:<name of feed>:<filter expression> [<tag> ...]
+
+# "query:Unread Articles (3month year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+# "query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+# "query:Unread Articles (1 month old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:31"
+# "query:Unread Articles (1 week old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:7"
+
+# "query:All Unread Articles (7 days old):unread = \"yes\" and age between 0:7"
+# "query:All Unread Articles (1 month old):unread = \"yes\" and age between 0:30"
+# "query:All Unread Articles (31-60 days old):unread = \"yes\" and age between 31:60"
+# "query:All Unread Articles (61-90 days old):unread = \"yes\" and age between 61:90"
+
+"query:All Unread Articles:unread = \"yes\""
+"query:All Articles DDL-DataHoarder:tags # \"DDL-DataHoarder\"" "DDL-DataHoarder"
+"query:All Articles Linux:tags # \"Linux\"" "Linux"
+"query:All Articles Linux-Subreddit:tags # \"Linux-Subreddit\"" "Linux-Subreddit"
+"query:All Articles Mac:tags # \"Mac\"" "Mac"
+"query:All Articles Azure-Subreddit:tags # \"Azure-Subreddit\"" "Azure-Subreddit"
+"query:All Articles Popular-Subreddit:tags # \"Popular-Subreddit\"" "Popular-Subreddit"
+"query:All Articles Video-Linux:tags # \"Video-Linux\"" "Video-Linux"
+"query:All Articles YouTube-Videos:tags # \"YouTube-Videos\"" "YouTube-Videos"
+"query:All Articles News:tags # \"News\"" "News"
+# "query:All Articles Svenska-News:tags # \"Svenska-News\"" "Svenska-News"
+"query:All Articles Tech-News:tags # \"Tech-News\"" "Tech-News"
+"query:All Articles Plex-Subreddit:tags # \"Plex-Subreddit\"" "Plex-Subreddit"
+"query:All Articles Dev-Subreddit:tags # \"Dev-Subreddit\"" "Dev-Subreddit"
+"query:All Articles Blog:tags # \"Blog\"" "Blog"
+"query:All Articles Podcast:tags # \"Podcast\"" "Podcast"
+
+# "query:All Unread Articles (30days):unread = \"yes\" and (age between 0:31)"
+# "query:Unread Articles (primary):unread = \"yes\" and tags # \"primary\""
+# "query:TwitterURLs:tags =~ \"5. Twitter\" and content =~ \"http\"" "5. Twitter"
+# "query:Unread Articles (1 year old):unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\" and age between 0:365"
+# "query:Unread Articles:unread = \"yes\" and tags !# \"pouet\" and tags !# \"page2rss\""
+
+# }}}
+# -------- DDL-DataHoarder {{{
+# ------------------------------------------------------
+https://www.reddit.com/r/opendirectories/.rss "DDL-DataHoarder"
+https://www.reddit.com/r/DHExchange/.rss "DDL-DataHoarder"
+
+# }}}
+# -------- Linux-Subreddit {{{
+# ------------------------------------------------------
+
+https://www.reddit.com/r/linux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/commandline/.rss "Linux-Subreddit"
+https://www.reddit.com/r/unixporn/.rss "Linux-Subreddit"
+https://www.reddit.com/r/UsabilityPorn/.rss "Linux-Subreddit"
+https://www.reddit.com/r/pkgoftheday/.rss "Linux-Subreddit"
+https://www.reddit.com/r/pop_os/.rss "Linux-Subreddit"
+https://www.reddit.com/r/archlinux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/linux_devices/.rss "Linux-Subreddit"
+https://www.reddit.com/r/UnixProTips/.rss "Linux-Subreddit"
+https://www.reddit.com/r/zsh/.rss "Linux-Subreddit"
+https://www.reddit.com/r/tmux/.rss "Linux-Subreddit"
+https://www.reddit.com/r/vim_magic/.rss "Linux-Subreddit"
+https://www.reddit.com/r/vim/.rss "Linux-Subreddit"
+https://www.reddit.com/r/linuxprojects/.rss "Linux-Subreddit"
+https://www.reddit.com/r/ScriptSwap/.rss "Linux-Subreddit"
+https://www.reddit.com/r/usefulscripts/.rss "Linux-Subreddit"
+https://www.reddit.com/r/debian/.rss "Linux-Subreddit"
+https://www.reddit.com/r/opensource/.rss "Linux-Subreddit"
+https://www.reddit.com/r/coolgithubprojects/.rss "Linux-Subreddit"
+https://www.reddit.com/r/selfhosted/.rss "Linux-Subreddit"
+
+# }}}
+# -------- Linux{{{
+http://feeds.feedburner.com/d0od "Linux" "OMG! Ubuntu!"
+https://www.linuxjournal.com/node/feed "Linux" "Linux Journal" 
+ # }}}
+ # -------- Mac{{{
+ http://9to5mac.com/feed/ "Mac" "9to5Mac"
+ # }}}
+# -------- Plex-Subreddit {{{
+
+https://www.reddit.com/r/PleX/.rss "Plex-Subreddit"
+
+# }}}
+# -------- Azure-Subreddit {{{
+https://www.reddit.com/r/AZURE/.rss "Azure-Subreddit"
+# }}}
+# -------- Popular-subreddit {{{
+https://www.reddit.com/r/popular/.rss "Popular-Subreddit"
+# }}}
+# -------- Web Development {{{
+https://www.reddit.com/r/webdev/.rss "Dev-Subreddit"
+https://www.reddit.com/r/dotnet/.rss "Dev-Subreddit"
+https://www.reddit.com/r/angular/.rss "Dev-Subreddit"
+https://www.reddit.com/r/kubernetes/.rss "Dev-Subreddit"
+# }}}
+#-------- News {{{
+
+https://feeds.thelocal.com/rss/se "News"
+# https://morss.it/https://feeds.thelocal.com/rss/se "News"
+https://www.nagpurtoday.in/latest-news/rss "News"
+# https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en "News"
+# https://news.google.com/rss/search?q=volvo%20cars&hl=en-IN&gl=IN&ceid=IN:en "News"
+# https://news.google.com/rss/search?q=sweden&hl=en-IN&gl=IN&ceid=IN:en "News"
+# https://news.google.com/rss/search?q=gothenburg&hl=en-IN&gl=IN&ceid=IN:en "News"
+#https://thelivenagpur.com/feed/
+#https://feeds.bbci.co.uk/hindi/india/rss.xml "News"
+https://lukesmith.xyz/rss.xml "Blog"
+https://srbachchan.tumblr.com/rss "Blog"
+https://ubuntupodcast.org/feed/podcast/ "Podcast"
+https://news.google.com/rss/search?q=linux&hl=en-US&gl=US&ceid=US:en "Tech-News"
+https://www.archlinux.org/feeds/news/ "Tech-News"
+https://blog.angular.io/feed "Tech-News"
+# https://azurecomcdn.azureedge.net/en-us/updates/feed/ "Tech-News"
+
+# }}}
+# -------- Svenska News {{{
+# https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/ "Svenska-News"
+# #}}}
+# -------- Video-Linux {{{
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvEdeev3sZoxi5hMksZI4KA "Video-Linux" "~jakejw93 - Linux Gaming"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXD2cy-5xnwTcvTNoUqbnKw "Video-Linux" "~sneekylinux"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIaiAJKGrdkVXD26ycTFPzQ "Video-Linux" "~OpenShot"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCngn7SVujlvskHRvRKc1cTw "Video-Linux" "~Bugswriter (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCZrrEuHiQjN2CUo84g5tk7w "Video-Linux" "~tripcode!Q/7"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdh-HeBRlgk7YJ0NDxPz6Mw "Video-Linux" "~AA Computers And Technology (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCcAy1o8VUCkdowxRYbc0XRw "Video-Linux" "~Sebi's Random Tech (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-wmf-Avorzz9QPKzdYFgeg "Video-Linux" "~Laptop Retrospective (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCCTVrRB5KpIiK6V2GGVsR1Q "Video-Linux" "~kudvenkat (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkf4VIqu3Acnfzuk3kRIFwA "Video-Linux" "~gotbletu (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "Video-Linux" "~Luke Smith (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCf93fPKwotph47H3_KDcRyg "Video-Linux" "~Kris Occhipinti (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeeFfhMcJa1kjtfZAGskOCA "Video-Linux" "~TechLinked (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCxQKHvKbmSzGMvUrVtJYnUA "Video-Linux" "~Learn Linux TV (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ "Video-Linux" "~Network Chuck (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "Video-Linux" "~Mental Outlaw (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCylGUf9BvQooEFjgdNudoQg "Video-Linux" "~The Linux Cast (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA "Video-Linux" "~Brodie Robertson (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ "Video-Linux" "~Veronica Explains (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCs2Kaw3Soa63cJq3H0VA7og "Video-Linux" "~rwxrob Rob Muhlestein (YouTube)"
+# }}}
+# -------- YouTube Videos {{{
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOtQWL2z-tFbI-mgy_Rpdgg "YouTube-Videos" "~UNFILTERED by Samdish"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdqoLdDI5U8Xz2_mYPD71eg "YouTube-Videos" "~i bike unfolded (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "YouTube-Videos" "~Linus Tech Tips (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCL0QSFSUfW8cHua_rDpltTg "YouTube-Videos" "~Peter Paul Chato (YouTube)"
+#https://www.youtube.com/feeds/videos.xml?channel_id=UCrC8mOqJQpoB7NuIMKIS6rQ "YouTube-Videos" "~Study IQ Education (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC15sF31QE-7rooIlSKnTq_w "YouTube-Videos" "~MSK (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1MwJy1R0nGQkXxRD9p-zTQ "YouTube-Videos" "~Barnacules Nerdgasm (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBr_Fu6q9iHYQCh13jmpbrg "YouTube-Videos" "~Errichto (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCcYzLCs3zrQIBVHYA1sK2sw "YouTube-Videos" "~Sadhguru (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ "YouTube-Videos" "~MKBHD (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8bM_y2J-rhv1FL3hdP2VSA "YouTube-Videos" "~Nomad Trails (YouTube)"
+# https://www.youtube.com/feeds/videos.xml?channel_id=UC54_ux4BnaJwkVFn5M391XQ "YouTube-Videos" "~TMKOC (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w "YouTube-Videos" "~Louis Rossmann (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNJcSUSzUeFm8W9P7UUlSeQ "YouTube-Videos" "~The Viral fever (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCfDxyxsxaKpyYXkrNRItLsg "YouTube-Videos" "~KRK (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCy5mW8fB24ITiiC0etjLI6w "YouTube-Videos" "~Nilesh Misra (YouTube)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCatL-c6pmnjzEOHSyjn-sHA "YouTube-Videos" "~Khan GS Reasearch Centre"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCd0ZD4iCXRXf18p3cA7EQfg "YouTube-Videos" "~Taran Van Hemert"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkTnIE2RohNA1eV4v-nov7A "YouTube-Videos" "~Taran Van Hemert 2"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwgKmJM4ZJQRJ-U5NjvR2dg "YouTube-Videos" "~Georgehotz"
+# }}}

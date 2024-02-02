@@ -1,0 +1,26 @@
+#__        _______ __  __   _  __                                
+#\ \      / /___ /|  \/  | | |/ /___ _   _ _ __ ___   __ _ _ __  
+# \ \ /\ / /  |_ \| |\/| | | ' // _ \ | | | '_ ` _ \ / _` | '_ \ 
+#  \ V  V /  ___) | |  | | | . \  __/ |_| | | | | | | (_| | |_) |
+#   \_/\_/  |____/|_|  |_| |_|\_\___|\__, |_| |_| |_|\__,_| .__/ 
+#                                    |___/                |_|    
+
+# -------- Shortcuts
+# { next tab
+# } previous tab
+# number followed by [ jump to link
+# number followed by ] jump to link backward
+# ctrl + q close tab
+# Q - close w3m
+# e open in urlportal
+# M - open in external browser
+
+keymap  e       EXTERN_LINK ~/.scripts/urlportal
+# keymap  SPC     NEXT_HALF_PAGE
+keymap  C-d     NEXT_HALF_PAGE
+keymap  C-u     PREV_HALF_PAGE
+
+keymap	J	UP
+keymap	K	DOWN
+
+keymap  yd      EXTERN_LINK   'yt-dlp -o "~/Downloads/%(title)s.%(ext)s"'
