@@ -133,6 +133,14 @@ nnoremap <silent> <Leader>l :Lines<CR>
 
 "}}}
 
+"-------- Clipboard{{{
+" copy or paste from X11 clipboard. 
+" http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
+vmap <leader>xyy :!xclip -f -sel clip<CR>
+map <leader>xpp mz:-1r !xclip -o -sel clip<CR>`z
+
+"}}}
+ 
 " -------- RipGrep {{{
 
 " Allow passing optional flags into the Rg command.
