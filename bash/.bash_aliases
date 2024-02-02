@@ -1,6 +1,6 @@
 # -------- Aliases {{{
-alias v='vim' 
-alias vim='vim' 
+alias v='$EDITOR' 
+alias vim='$EDITOR' 
 alias w3m='w3m -cookie' 
 alias h='cd $HOME && la' 
 alias dox='cd ~/Documents' 
@@ -13,6 +13,7 @@ alias cfg='cd ~/.config'
 alias repo='cd ~/Public/gitrepo' 
 alias dot='cd ~/Public/gitrepo/dotfiles' 
 alias dotv2='cd ~/Public/gitrepo/dotfiles_v2' 
+alias dotv3='cd ~/Public/gitrepo/dotfiles_v3' 
 alias notes='cd ~/Public/gitrepo/shownotes' 
 alias wiki='cd ~/Public/gitrepo/wiki' 
 
@@ -26,6 +27,8 @@ alias software='cd $HOME/dev/tote-tocc-softwareservice'
 alias service='cd $HOME/dev/tote-tocc-services-ui'                          
 alias notifi='cd $HOME/dev/tote-tocc-notificationservice' 
 alias zos='cd $HOME/dev/tote-tocc-zos-connect' 
+alias bashrc='$EDITOR ~/.bashrc'
+alias aliases='$EDITOR ~/.bash_aliases'
 
 alias ytv='youtube-viewer'
 alias wikimd="$EDITOR ~/.vimwiki/wikimd/index.md"
