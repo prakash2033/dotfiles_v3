@@ -11,6 +11,10 @@
     # vim
     sudo apt-get install vim vim-gui-common vim-runtime vim-nox
 
+    # vim plug install. Run :PlugInstall inside vim. Install vim-gtk aka gvim in linux
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
     tar -xzvf openssl-1.1.1c.tar.gz
     cd openssl-1.1.1c
@@ -29,11 +33,13 @@
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     git clone https://github.com/prakash2033/shownotes.git
 
- 
-
     ## Google Chrome
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome-stable_current_amd64.deb
     
     sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
     sudo chmod a+rx /usr/local/bin/yt-dlp
+
+    wget https://dot.net/v1/dotnet-install.sh
+    chmod +x dotnet-install.sh
+    ./dotnet-install.sh --channel 7.0
