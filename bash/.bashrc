@@ -94,9 +94,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-fh() {
-eval $(history | sort --reverse --numeric-sort | fzf | sed 's/ *[0-9]* *//')
-}
 se(){
 	find . | fzf -i | xargs -r $EDITOR
 }
@@ -124,7 +121,6 @@ gch() {
   git checkout $(git branch -a | fzf | sed 's/remotes\/origin\///')
 }
 
-bind '"\C-H":"fh\n"'	# fzf history
 bind '"\C-O":"se\n"'  # fzf search files
 
 #-------- BASH External Loading {{{
