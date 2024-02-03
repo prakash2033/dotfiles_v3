@@ -125,7 +125,7 @@ gch() {
 }
 
 bind '"\C-H":"fh\n"'	# fzf history
-bind '"\C-O":"se\n"'
+bind '"\C-O":"se\n"'  # fzf search files
 
 #-------- BASH External Loading {{{
 #------------------------------------------------------
