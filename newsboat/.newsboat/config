@@ -319,24 +319,24 @@ define-filter "gotbletu" "feedtitle =~ \"gotbletu\" or description =~ \"gotbletu
 # color   article             green      black
 #
 # # }}}
-#-------- Theme: Solarized-dark {{{
-#------------------------------------------------------
-## source: https://github.com/newsboat/newsboat/blob/master/contrib/colorschemes/solarized-dark
-
-color background         default   default
-color listnormal         default   default
-color listnormal_unread  default   default
-color listfocus          black     yellow
-color listfocus_unread   black     yellow
-color info               default   black
-color article            default   default
-
-# highlights
-highlight article "^(Title):.*$" blue default
-highlight article "https?://[^ ]+" red default
-highlight article "\\[image\\ [0-9]+\\]" green default
-
-# }}}
+# #-------- Theme: Solarized-dark {{{
+# #------------------------------------------------------
+# ## source: https://github.com/newsboat/newsboat/blob/master/contrib/colorschemes/solarized-dark
+#
+# color background         default   default
+# color listnormal         default   default
+# color listnormal_unread  default   default
+# color listfocus          black     yellow
+# color listfocus_unread   black     yellow
+# color info               default   black
+# color article            default   default
+#
+# # highlights
+# highlight article "^(Title):.*$" blue default
+# highlight article "https?://[^ ]+" red default
+# highlight article "\\[image\\ [0-9]+\\]" green default
+#
+# # }}}
 # #-------- Theme: Solarized-dark Modded by prakash {{{
 # #------------------------------------------------------
 # ## source: https://github.com/newsboat/newsboat/blob/master/contrib/colorschemes/solarized-dark
