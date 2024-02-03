@@ -88,10 +88,10 @@ nnoremap <C-n> :set rnu! <bar> set nu!<CR>
 nnoremap k gk
 nnoremap j gj
 
-" noremap <Leader>y "*y
-" noremap <Leader>p "*p
-" noremap <Leader>Y "+y
-" noremap <Leader>P "+p
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 
 " Remove newbie crutches in Insert Mode
 inoremap <Down> <Nop>

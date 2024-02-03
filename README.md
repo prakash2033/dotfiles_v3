@@ -67,3 +67,11 @@
     wget https://dot.net/v1/dotnet-install.sh
     chmod +x dotnet-install.sh
     ./dotnet-install.sh --channel 7.0
+    
+    # copy to system clipboard in wayland
+    # https://github.com/jasonccox/vim-wayland-clipboard
+    sudo apt install wl-clipboard
+    
+    mkdir -p ~/.vim/pack/vim-wayland-clipboard/start/
+    git clone https://github.com/jasonccox/vim-wayland-clipboard.git ~/.vim/pack/vim-wayland-clipboard/start/vim-wayland-clipboard
+

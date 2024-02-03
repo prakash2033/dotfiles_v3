@@ -16,20 +16,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-
-# Added by Toolbox App
-export PATH="$PATH:/home/prakash/.local/share/JetBrains/Toolbox/scripts"
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export FZF_DEFAULT_OPTS="--color=dark"
@@ -58,14 +44,15 @@ export W3M_HOTKEY_RELOAD='r'
 [ -d "$HOME/.scripts" ] && PATH="$HOME/.scripts:$PATH"
 [ -d "/usr/sbin" ] && PATH="/usr/sbin:$PATH"
 [ -d "$HOME/Public/gitrepo/diff-so-fancy" ] && PATH="$HOME/Public/gitrepo/diff-so-fancy:$PATH"
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH" # user private bin
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH" # users private bin
 [ -d "$HOME/.dotnet" ] && PATH="$HOME/.dotnet:$PATH"
 [ -d "$HOME/.dotnet/tools" ] && PATH="$HOME/.dotnet/tools:$PATH"
 [ -d "$HOME/dev/flutter/bin" ] && PATH="$HOME/dev/flutter/bin:$PATH"
 [ -d "$ANDROID_HOME/tools" ] && PATH="$ANDROID_HOME/tools:$PATH"
 [ -d "$ANDROID_HOME/tools/bin" ] && PATH="$ANDROID_HOME/tools/bin:$PATH"
 [ -d "$ANDROID_HOME/platform-tools" ] && PATH="$ANDROID_HOME/platform-tools:$PATH"
-
+[ -d "$ANDROID_HOME/home/prakash/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$PATH:/home/prakash/.local/share/JetBrains/Toolbox/scripts"
 # -------- Add colors to the less and man commands {{{
 
 export LESS=-R
