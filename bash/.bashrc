@@ -74,26 +74,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -117,8 +97,35 @@ fi
 fh() {
 eval $(history | sort --reverse --numeric-sort | fzf | sed 's/ *[0-9]* *//')
 }
+se(){
+	find . | fzf -i | xargs -r $EDITOR
+}
+_gitLogLineToHash="echo {} |
+grep -o '[a-f0-9]\{7\}' |
+head -1"
 
-bind '"\C-F":"fh\n"'	# fzf history
+_viewGitLogLine="$_gitLogLineToHash |
+xargs -I % sh -c 'git show --color=always % |
+diff-so-fancy'"
+
+glog() {  # search for commit with preview and copy hash
+  glNoGraph |
+      fzf -i -e --no-sort --reverse \
+          --tiebreak=index --no-multi \
+          --ansi --preview="$_viewGitLogLine" \
+          --header "enter: view, C-y: copy hash" \
+          --bind "enter:execute:$_viewGitLogLine   |
+          less -R" \
+          --bind "ctrl-y:execute:$_gitLogLineToHash |
+          pbcopy"
+}
+
+gch() {
+  git checkout $(git branch -a | fzf | sed 's/remotes\/origin\///')
+}
+
+bind '"\C-H":"fh\n"'	# fzf history
+bind '"\C-O":"se\n"'
 
 #-------- BASH External Loading {{{
 #------------------------------------------------------
@@ -132,3 +139,18 @@ if [ "$PS1" ]; then
 	complete -cf sudo man
 fi
 #}}}
+
+# -------- HSTR configuration - add this to ~/.bashrc {{{
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+# }}}
