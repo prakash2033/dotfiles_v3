@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=false
 ColorScheme=Breeze
-Font=Hack,14,-1,5,50,0,0,0,0,0
+Font=Hack,14,-1,7,50,0,0,0,0,0
 
 [General]
 Name=Profile 1
