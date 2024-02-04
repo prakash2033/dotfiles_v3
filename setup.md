@@ -54,6 +54,14 @@
     mkdir -p ~/.vim/pack/vim-wayland-clipboard/start/
     git clone https://github.com/jasonccox/vim-wayland-clipboard.git ~/.vim/pack/vim-wayland-clipboard/start/vim-wayland-clipboard
 
+## youtube viewer
+    git clone https://github.com/trizen/youtube-viewer.git
+    cd youtube-viewer
+    cpan Module::Build 
+    perl Build.PL
+    sudo ./Build installdeps
+    sudo ./Build install
+
 # dotnet
     wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
     tar -xzvf openssl-1.1.1c.tar.gz
