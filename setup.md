@@ -70,6 +70,9 @@
     sudo make
     sudo make install (it puts it into /usr/local/lib so it doesn't mess with the rest of your system)
 
+# Below export doesn't work in debian xfce so symlink instead
+    sudo ln -s /usr/local/lib/libssl.so.1.1 /usr/lib/libssl.so.1.1
+
     LD_LIBRARY_PATH="/usr/local/lib" dotnet
     # or
     export LD_LIBRARY_PATH="/usr/local/lib"
