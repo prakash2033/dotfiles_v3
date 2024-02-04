@@ -14,7 +14,7 @@
 # clone repos
     mkdir -p ~/Public/gitrepo
     cd ~/Public/gitrepo
-    git clone git@github.com/prakash2033/dotfiles_v2.git
+    git clone git@github.com:prakash2033/dotfiles_v2.git
     git clone git@github.com:prakash2033/dotfiles_v3.git
     git clone git@github.com:prakash2033/wiki.git
     git clone git@github.com/prakash2033/shownotes.git
