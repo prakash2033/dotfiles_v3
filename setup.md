@@ -16,14 +16,14 @@ sudo apt install wl-clipboard
 ssh-keygen -b 2048 -t rsa
 
 # clone repos
-mkdir -p ~/Public/gitrepo
-cd ~/Public/gitrepo
-git clone git@github.com/prakash2033/dotfiles_v2.git
-git clone git@github.com:prakash2033/dotfiles_v3.git
-git clone git@github.com:prakash2033/wiki.git
-git clone git@github.com/prakash2033/shownotes.git
-git clone https://github.com/so-fancy/diff-so-fancy.git
-git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1 ## git prompt
+    mkdir -p ~/Public/gitrepo
+    cd ~/Public/gitrepo
+    git clone git@github.com/prakash2033/dotfiles_v2.git
+    git clone git@github.com:prakash2033/dotfiles_v3.git
+    git clone git@github.com:prakash2033/wiki.git
+    git clone git@github.com/prakash2033/shownotes.git
+    git clone https://github.com/so-fancy/diff-so-fancy.git
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1 ## git prompt
 
 ## symlink all folders (trailing slash */) in dotfiles dir to home dir
 cd ~/Public/gitrepo/dotfiles_v3
