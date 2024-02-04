@@ -58,7 +58,7 @@
     tar -xzvf openssl-1.1.1c.tar.gz
     cd openssl-1.1.1c
     ./config
-    make
+    sudo make
     sudo make install (it puts it into /usr/local/lib so it doesn't mess with the rest of your system)
 
     LD_LIBRARY_PATH="/usr/local/lib" dotnet
