@@ -1,5 +1,5 @@
 # apt install
-    sudo apt install git vim tmux newsboat task-spooler stow mpv htop wget curl fzf w3m surfraw rtv bash-completion hstr build-essential openssh-client
+    sudo apt install git vim tmux newsboat task-spooler stow mpv htop wget curl fzf w3m surfraw rtv bash-completion hstr build-essential
 # kde apps
     sudo apt install kolourpaint
 
@@ -8,6 +8,7 @@
     sudo apt install wl-clipboard
 
 # Generate ssh key
+    sudo apt install openssh-client
     ssh-keygen -b 2048 -t rsa
 
 # clone repos
