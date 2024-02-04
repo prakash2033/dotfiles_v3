@@ -61,6 +61,12 @@
     perl Build.PL
     sudo ./Build installdeps
     sudo ./Build install
+    
+# displaylink debian
+    sudo apt-get update && sudo apt-get install -y lsb-release && sudo apt-get clean all
+    git clone https://github.com/AdnanHodzic/displaylink-debian.git
+    cd displaylink-debian
+    sudo ./displaylink-debian.sh
 
 # dotnet
     wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
