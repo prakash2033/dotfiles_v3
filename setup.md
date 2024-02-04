@@ -1,5 +1,5 @@
 # apt install
-    sudo apt install git vim tmux newsboat task-spooler stow mpv htop wget curl fzf w3m surfraw rtv bash-completion hstr build-essential
+    sudo apt install git vim tmux newsboat task-spooler stow mpv htop wget curl fzf w3m surfraw rtv bash-completion hstr build-essential openssh-client
 # kde apps
     sudo apt install kolourpaint
 
