@@ -89,6 +89,7 @@ https://www.reddit.com/r/selfhosted/.rss "Linux-Subreddit"
 # -------- Linux{{{
 http://feeds.feedburner.com/d0od "Linux" "OMG! Ubuntu!"
 https://www.linuxjournal.com/node/feed "Linux" "Linux Journal" 
+https://9to5linux.com/feed/atom "Linux" "9 To 5Linux" 
  # }}}
  # -------- Mac{{{
  http://9to5mac.com/feed/ "Mac" "9to5Mac"
