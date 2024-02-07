@@ -74,7 +74,7 @@
     cd openssl-1.1.1c
     ./config
     sudo make
-    sudo make install (it puts it into /usr/local/lib so it doesn't mess with the rest of your system)
+    sudo make install #(it puts it into /usr/local/lib so it doesn't mess with the rest of your system)
 
 # Below export doesn't work in debian xfce so symlink instead
     sudo ln -s /usr/local/lib/libssl.so.1.1 /usr/lib/libssl.so.1.1
