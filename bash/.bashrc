@@ -136,6 +136,44 @@ if [ "$PS1" ]; then
 fi
 #}}}
 
+#-------- Keybinding {{{
+#------------------------------------------------------
+# movement and autocompeletion at the prompt
+bind 'set completion-ignore-case on'	# case insensitive on tab completion
+bind '"\t":menu-complete' 		# Tab: Cycle thru completion
+bind '"\e[1;3D":backward-kill-word' 	# Alt + arrowleft : delete word backward
+bind '"\e\e[D":backward-kill-word' 	# Alt + arrowleft : delete word backward
+bind '"\e[1;3A":kill-whole-line' 	# Alt + arrowup : delete whole line
+bind '"\e[1;3B":undo'			# Alt + arrowdown : undo
+bind '"\e[1;5C":forward-word'		# Ctrl + arrowright : Jump a word forward
+bind '"\e[1;5D":backward-word'		# Ctrl + arrowleft : Jump a word backward
+bind '"\e[Z":menu-complete-backward'	# Shift+Tab: Cycle backwards
+bind '"\e[A": history-search-backward'	# ArrowUp: history completion backwards
+bind '"\e[B": history-search-forward'	# ArrowDown: history completion forward
+
+# enable history verification:
+# bang commands (!, !!, !?) will print to shell and not be auto executed
+# http://superuser.com/a/7416
+shopt -s histverify
+
+# Bang! Previous Command Hotkeys
+# print previous command but only the first nth arguments
+# Alt+1, Alt+2 ...etc
+# http://www.softpanorama.org/Scripting/Shellorama/bash_command_history_reuse.shtml#Bang_commands
+bind '"\e1": "!:0 \n"'
+bind '"\e2": "!:0-1 \n"'
+bind '"\e3": "!:0-2 \n"'
+bind '"\e4": "!:0-3 \n"'
+bind '"\e5": "!:0-4 \n"'
+bind '"\e`": "!:0- \n"'     # all but the last word
+
+##
+
+
+# bind '"\C-O":"fzf-dmenu\n"'
+
+## }}}
+
 # -------- HSTR configuration - add this to ~/.bashrc {{{
 alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors

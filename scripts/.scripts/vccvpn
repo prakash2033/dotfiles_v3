@@ -1,0 +1,250 @@
+#!/bin/bash
+
+# TITLE        : vccvpn
+# DESCRIPTION  : VCLC VPN login wrapper
+# AUTHOR       : edabrows
+# MAINTAINER   : VCUL ( ubuntu.volvocars.net )
+# DATE         : 20230217
+# VERSION      : 0.1.2
+# USAGE        : vccvpn -h
+# NOTES        :
+# GLOBALS      : VCCVPN_HOST
+#              : F5FPC
+# BASH_VERSION : 5.1.16(1)-release
+
+VCCVPN_HOST="${VCCVPN_HOST:-iconnect.global.volvocars.biz}"
+F5FPC="${F5FPC:-/usr/local/bin/f5fpc}"
+
+script_name="$(basename "$0")"
+script_version="0.1.2"
+f5fpc_version="unknown"
+f5fpc_req_version='7213.2021.0526.1'
+
+#######################################
+# print_splash prints a splash screen
+#  before executing the script.
+# Arguments:
+#   script_version - $1
+#   f5fpc_version - $2
+# Returns
+#   None
+#######################################
+print_splash() {
+  local script_version="${1:?}" f5fpc_version="${2:?}"
+  echo
+  echo "   _   _____________   ______  ____   "
+  echo "  | | / / ___/ ___/ | / / __ \/ __ \  "
+  echo "  | |/ / /__/ /__ | |/ / /_/ / / / /  "
+  echo "  |___/\___/\___/ |___/ .___/_/ /_/   "
+  echo "                     /_/              "
+  echo
+  echo "   script version: $script_version"
+  echo "    f5fpc version: $f5fpc_version"
+  echo
+  echo
+}
+
+#######################################
+# Prompts ($1) the user for input and validates it against a regex ($2).
+#  The input may optionally be provided through an environment variable ($3).
+# Arguments
+#  prompt - $1
+#  regex - $2
+#  answer - $3
+# returns
+#  answer
+#######################################
+read_and_validate() {
+    local prompt="${1:-Input}" regex="${2:-.*}" from_var="${3:-}" answer
+
+  if [ -n "$from_var" ] && [ -n "${!from_var}" ]; then
+    answer="${!from_var}"
+    echo "$prompt: $answer" 1>&2
+  fi
+
+  while ! grep -Eq "$regex" <<<"$answer"; do
+    read -rp "$prompt: " answer
+  done
+
+  printf "%s" "$answer"
+}
+
+#######################################
+# Login to f5fpc client.
+# Globals:
+#   None
+# Arguments:
+#   username cdsid_username - $1
+#   password which is pin+token+cdsid_password - $2
+#   server to connect to - $3
+#######################################
+login() {
+  local info curr_rc prev_rc
+
+  $F5FPC --start --user "${1:?}" --password "${2:?}" --host "${3:?}" >/dev/null
+  while true; do
+    info="$($F5FPC --info 2>&1)"
+    curr_rc=$?
+    case $curr_rc in
+    0) # everything seems fine
+      ;;
+    1)
+      [ "$prev_rc" != "1" ] && echo "Session initialized"
+      ;;
+    2)
+      [ "$prev_rc" != "2" ] && echo "User login in progress..."
+      ;;
+    3)
+      [ "$prev_rc" != "3" ] && echo "Waiting..."
+      ;;
+    5)
+      [ "$prev_rc" != "5" ] && echo "Connection established successfully" && return 0
+      ;;
+    7)
+      echo
+      echo "ERROR: Login denied or endpoint not found. Please ensure:" 1>&2
+      echo "     1. That the supplied credentials are correct." 1>&2
+      echo "     2. That your CDSID or PointSharp token isn't locked."
+      echo "      Please contact the Service Desk to verify this." 1>&2
+      $F5FPC --stop >/dev/null
+      return $curr_rc
+      ;;
+    9)
+      echo "ERROR: Connection timed out" 1>&2
+      $F5FPC --stop >/dev/null
+      return $curr_rc
+      ;;
+    85) # client not connected
+      return $curr_rc
+      ;;
+    *)
+      echo "WARN: Unknown return code: $curr_rc" 1>&2
+      echo "$info" 1>&2
+      return $curr_rc
+      ;;
+    esac
+    prev_rc="$curr_rc"
+  done
+}
+
+retrieve_credentials() {
+  local cdsid password pin tfa seed token
+  local prompt char charcount
+
+    cdsid="$(read_and_validate "CDSID" "^[[:alnum:]]{4,}$" "CDSID")"
+
+  prompt="Password: "
+  if [ -n "$PASSWORD" ]; then
+    password="$PASSWORD"
+    printf "%s" "$prompt"
+    for ((i = 1; i <= ${#password}; i++)); do printf "*"; done
+    echo
+  else
+    # TODO(anourzad): What is going on here?
+    charcount='0'
+    while IFS='' read -n '1' -p "${prompt}" -r -s 'char'; do
+      case "${char}" in
+
+      $'\000') # Handles NULL
+        break
+        ;;
+      $'\010' | $'\177') # Handles BACKSPACE and DELETE
+        if ((charcount > 0)); then
+          prompt=$'\b \b'
+          password="${password%?}"
+          ((charcount--))
+        else
+          prompt=''
+        fi
+        ;;
+      *)
+        prompt='*'
+        password+="${char}"
+        ((charcount++))
+        ;;
+      esac
+    done
+    printf "\n"
+  fi
+
+    pin="$(read_and_validate "PointSharp PIN (4 digits)" "^[[:digit:]]{4}$" "POINTSHARP_PIN")"
+
+  prompt="PointSharp token (6 digits)"
+  if [ -z "$POINTSHARP_TOKEN" ]; then
+    # Try to read the seed from file and generate the token using oathtool
+    if command -v oathtool >/dev/null; then
+      # Prefer ~/.config/2fa/, fall back to legacy ~/.2fa/
+      for tfa in ~/.config/2fa/pointsharp ~/.2fa/pointsharp; do
+        [ -f "$tfa" ] && seed=$(cat "$tfa")
+
+        if [ -n "$seed" ]; then
+          token=$(oathtool -b --totp "${seed:?}")
+          echo "$prompt: $token"
+          break
+        fi
+      done
+    fi
+  fi
+
+  # Read using prompt or exported var if the oauthtool operation wasn't carried out
+    [ -z "$seed" ] && token="$(read_and_validate "$prompt" "^[[:digit:]]{6}$" "POINTSHARP_TOKEN")"
+
+  login "${cdsid}" "${pin}${token}${password}" "https://$VCCVPN_HOST"
+}
+
+################################################################################
+# usage prints how to use this script. For better understanding read the code.
+# Arguments:
+#   None
+# Returns:
+#   None
+################################################################################
+usage() {
+  echo "$script_name [-h] (login|logout|status)"
+  echo
+  echo "Export these variables and run '$script_name login' for non-interactive use:"
+  echo "  - CDSID"
+  echo "  - PASSWORD"
+  echo "  - POINTSHARP_PIN"
+  echo "  - POINTSHARP_TOKEN"
+  echo
+  echo "NOTICE: Login using ~/.netrc and '$script_name PASSWORD PIN TOKEN' has been removed in this version of vccpn."
+}
+
+# Entry point
+if [ ${#} -eq 0 ]; then # No args
+  usage
+  exit 1
+elif [ "$1" == "-h" ]; then # Display usage
+  usage
+  exit 0
+fi
+
+command -v "$F5FPC" >/dev/null && f5fpc_version="$($F5FPC --version | awk '{print $7}')"
+print_splash "$script_version" "${f5fpc_version}"
+
+# If f5fpc client is not installed we output an error and exit with error 2
+if ! command -v "$F5FPC" >/dev/null; then
+  echo "FATAL: Could not find $F5FPC" 1>&2
+  exit 2
+elif [ "$f5fpc_version" != "$f5fpc_req_version" ]; then
+  echo "ERROR: f5fpc version mismatch!" 1>&2
+  echo "       Please stop the VPN and make sure its not running and run update-vcclc." 1>&2
+  echo "       Raise a ServiceNow incident if the issue persists." 1>&2
+  exit 3
+fi
+
+case $1 in
+login)
+  retrieve_credentials
+  ;;
+logout)
+  $F5FPC --stop | head -n1
+  ;;
+status)
+  $F5FPC --info
+  ;;
+*)
+  usage
+  ;;
+esac
