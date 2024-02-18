@@ -17,10 +17,10 @@ height=$(wattr h "$ROOT")
 # my_term=sakura
 # my_term="xterm"
 # my_term="konsole"
-my_term="xfce4-terminal"
+# my_term="xfce4-terminal"
 # my_term="alacritty"
 # my_term=terminator
-# my_term=gnome-terminal
+my_term=gnome-terminal
 
 # option 2: auto detect terminal emulator (note: make sure to only open one)
 # my_term="urxvt|xterm|uxterm|termite|sakura|lxterminal|terminator|mate-terminal|pantheon-terminal|konsole|gnome-terminal|xfce4-terminal"
