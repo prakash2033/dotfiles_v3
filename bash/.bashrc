@@ -114,7 +114,7 @@ glog() {  # search for commit with preview and copy hash
           --bind "enter:execute:$_viewGitLogLine   |
           less -R" \
           --bind "ctrl-y:execute:$_gitLogLineToHash |
-          pbcopy"
+          xsel --clipboard --input"
 }
 
 gch() {
