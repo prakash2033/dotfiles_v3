@@ -265,6 +265,7 @@ se(){
 	find . | fzf -i | xargs -r $EDITOR
 }
 
+cfg-hypr() { $EDITOR ~/.config/hypr/hyprland.conf ;}
 cfg-newsboat() { $EDITOR ~/.newsboat/config ;}
 cfg-newsboat-queue() { $EDITOR ~/.newsboat/queue ;}
 cfg-newsboat-urls() { $EDITOR ~/.newsboat/urls ;}
