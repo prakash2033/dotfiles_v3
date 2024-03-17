@@ -51,6 +51,7 @@ export W3M_HOTKEY_RELOAD='r'
 [ -d "$ANDROID_HOME/tools/bin" ] && PATH="$ANDROID_HOME/tools/bin:$PATH"
 [ -d "$ANDROID_HOME/platform-tools" ] && PATH="$ANDROID_HOME/platform-tools:$PATH"
 [ -d "$ANDROID_HOME/home/prakash/.local/share/JetBrains/Toolbox/scripts" ] && PATH="$PATH:/home/prakash/.local/share/JetBrains/Toolbox/scripts"
+[ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
 # -------- Add colors to the less and man commands {{{
 
 export LESS=-R
