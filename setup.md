@@ -41,9 +41,6 @@
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew install gcc
 
-# konsole profile
-    ~/.local/share/konsole
-
 # vim
     sudo apt install  vim-gui-common vim-runtime vim-nox
     sudo apt install python3-pip python-is-python3
