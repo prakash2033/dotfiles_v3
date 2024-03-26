@@ -107,10 +107,6 @@ setopt PROMPT_SUBST
 # -------- Source {{{
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=222,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=222,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=222
-
 # Load zsh autosuggestion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
