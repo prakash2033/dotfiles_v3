@@ -16,11 +16,11 @@ height=$(wattr h "$ROOT")
 # my_term=urxvt
 # my_term=sakura
 # my_term="xterm"
-# my_term="konsole"
+my_term="konsole"
 # my_term="xfce4-terminal"
 # my_term="alacritty"
 # my_term=terminator
-my_term=gnome-terminal
+# my_term=gnome-terminal
 
 # option 2: auto detect terminal emulator (note: make sure to only open one)
 # my_term="urxvt|xterm|uxterm|termite|sakura|lxterminal|terminator|mate-terminal|pantheon-terminal|konsole|gnome-terminal|xfce4-terminal"
@@ -31,10 +31,10 @@ if !(ps aux | grep "$my_term" | grep -v grep > /dev/null)
 fi
 
 # get terminal emulator pid ex: 44040485
-pid=$(xdotool search --class "$my_term" | tail -n1)
+# pid=$(xdotool search --class "$my_term" | tail -n1)
 
 # get terminal emulator and matching name pid ex: 44040485 
-# pid=$(comm -12 <(xdotool search --name "$my_term" | sort) <(xdotool search --class "$my_term" | sort))
+pid=$(comm -12 <(xdotool search --name "$my_term" | sort) <(xdotool search --class "$my_term" | sort))
 
 # get windows id from pid ex: 0x2a00125%
 wid=$(printf 0x%x "$pid")
