@@ -44,7 +44,8 @@
 #### }}}
 ########################## VARIABLE SECTION ########################## {{{
 DEFAULT="$BROWSERCLI"
- VIDEO_QUEUE="$SPOOL mpv --ontop --no-focus-on-open --no-border --force-window --autofit=500x280 --geometry=-15-53"
+#  VIDEO_QUEUE="$SPOOL mpv --ontop --no-focus-on-open --no-border --force-window --autofit=500x280 --geometry=-15-53"
+ VIDEO_QUEUE="$SPOOL mpv --no-focus-on-open"
 # VIDEO_QUEUE_ALT="ts quvi dump "$LINK" -b quiet --exec 'mpv %u'"
 # VIDEO_CLIP="mpv --loop --quiet --ontop --no-focus-on-open --no-border --force-window --autofit=900x600 --geometry=-15+60"
 VIDEO_CLIP="mpv --ontop --no-focus-on-open --no-border --force-window --autofit=900x600 --geometry=-15+60"
